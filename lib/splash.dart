@@ -15,7 +15,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
-    // goToLogin();
+    goToLogin();
     checkUserCred();
     super.initState();
   }
@@ -46,7 +46,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   Future<void> goToLogin() async{
-    await Future.delayed(Duration(seconds: 0));
+    await Future.delayed(Duration(seconds: 3));
     Navigator.of(context)
           .push(MaterialPageRoute(builder: (ctx) => LoginPage()));
   }

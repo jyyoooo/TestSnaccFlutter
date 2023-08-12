@@ -10,12 +10,16 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+         automaticallyImplyLeading: false,
         title: Text('Snacc'),
         actions: [
+          Center(child: Text('LogOut>',style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white),)),
           IconButton(
               onPressed: () {
-                signOut(context);
+                _showLogoutConfirmationDialog(context);
+                // signOut(context);
               },
+              
               icon: Icon(Icons.logout_rounded))
         ],
       ),
@@ -27,11 +31,9 @@ class HomePage extends StatelessWidget {
                   textColor: Colors.white,
                   title: Text('Snack item'),
                   subtitle: Text('Burger with pepsi and stuff $index'),
-                  leading: isSquareAvatar
-                      ? Container(
+                  leading: isSquareAvatar?Container(
                           width: 60,
                           height: 60,
-                          // color: Colors.blue, // Set your desired color for square avatars
                           alignment: Alignment.center,
                           child: Image.asset('assets\\images\\pepsi-cold-drink-500x500.png')
                         )
@@ -59,4 +61,33 @@ class HomePage extends StatelessWidget {
     Navigator.of(ctx).pushAndRemoveUntil(
         MaterialPageRoute(builder: (ctx1) => LoginPage()), (route) => false);
   }
+
+   _showLogoutConfirmationDialog(BuildContext ctx) async {
+    return showDialog<void>(
+      context: ctx,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Logout Confirmation'),
+          content: Text('Are you sure you want to log out?'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Logout'),
+              onPressed: () {
+                // Perform the logout action here
+                Navigator.of(context).pop();
+                signOut(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  
+}
 }
