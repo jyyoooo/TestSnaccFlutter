@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test2/main.dart';
 import 'package:test2/screen1.dart';
-import 'package:test2/screen2.dart';
+// import 'package:test2/screen2.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -58,7 +58,8 @@ class _SplashPageState extends State<SplashPage> {
       goToLogin();
     }
     else{
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => HomePage()));
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (ctx1) => LoginPage()), (route) => false);
     }
   }
 }  

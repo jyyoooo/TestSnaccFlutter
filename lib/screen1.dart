@@ -5,14 +5,14 @@ import 'package:test2/main.dart';
 import 'package:test2/screen2.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final String name = 'snacc';
+  final String logo = 'snacc';
 
   final _userNameCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
@@ -36,9 +36,9 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Center(
                     child: Text(
-                  name,
+                  logo,
                   style: TextStyle(
-                    color: Colors.yellowAccent[700],
+                    color: Colors.yellow[600],
                     fontSize: 60,
                     fontWeight: FontWeight.w900,
                     fontStyle: FontStyle.normal,
@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     border: OutlineInputBorder(
                         // borderSide: BorderSide.none,
                         borderRadius: BorderRadius.horizontal(
-                            right: Radius.circular(10), left: Radius.circular(10))),
+                            right: Radius.circular(15), left: Radius.circular(15))),
                   ),
       
                   validator: (value) {
@@ -89,16 +89,14 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: 'Password',
                     labelStyle: TextStyle(fontFamily: 'RobotoMono',color: Colors.grey),
                     filled: true,
-                    
-                    
                     fillColor: Color.fromARGB(255, 240, 240, 240),
+                    
                     contentPadding: EdgeInsets.all(10),
                     
                     border: OutlineInputBorder(
-                        
+                      
                         borderRadius: BorderRadius.horizontal(
-                          
-                            right: Radius.circular(10), left: Radius.circular(10))),
+                            right: Radius.circular(15), left: Radius.circular(15))),
                   ),
       
                    validator: (value) {
@@ -162,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
     final _userName = _userNameCtrl.text;
     final _password = _passwordCtrl.text;
 
-    if (_userName == _password) {
+    if (_userName == 'jyyoooo' &&  _password == 'jyo@123') {
       print('The Username and Password Matches!!');
 
       final _sharedPrefs = await SharedPreferences.getInstance();
