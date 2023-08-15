@@ -8,41 +8,54 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-         automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         title: Text('Snacc'),
         actions: [
-          Center(child: Text('LogOut>',style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white),)),
+          Center(
+              child: Text(
+            'LogOut>',
+            style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+          )),
           IconButton(
               onPressed: () {
                 _showLogoutConfirmationDialog(context);
                 // signOut(context);
               },
-              
               icon: Icon(Icons.logout_rounded))
         ],
       ),
       body: SafeArea(
           child: ListView.separated(
+              physics: BouncingScrollPhysics(),
               itemBuilder: (ctx, index) {
                 bool isSquareAvatar = index % 2 == 0;
                 return ListTile(
-                  textColor: Colors.white,
-                  title: Text('Snack item'),
-                  subtitle: Text('Burger with pepsi and stuff $index'),
-                  leading: isSquareAvatar?Container(
-                          width: 60,
-                          height: 60,
-                          alignment: Alignment.center,
-                          child: Image.asset('assets\\images\\pepsi-cold-drink-500x500.png')
+                  contentPadding: EdgeInsets.all(16.0),
+                  title: Text('Burgir'),
+                  subtitle: Text('Burgir and pespi'),
+                  leading: isSquareAvatar
+                      ? Container(
+                          width: 100,
+                          height: 100,
+                          child: Image.asset(
+                              'assets\\images\\pepsi-cold-drink-500x500.png'),
                         )
-                      : CircleAvatar(
-                          radius: 30,
-                          child: ClipOval(child: Image.asset('assets\\images\\veg-burger-patty-500x500.png')),
-                          // backgroundImage: Image.asset('assets\\images\\Screenshot 2023-05-12 191155.png'),
+                      : Container(
+                          width: 100,
+                          height: 100,
+                          child: ClipOval(
+                              child: Image.asset(
+                                  'assets\\images\\veg-burger-patty-500x500.png')),
                         ),
-                  trailing: Text('\$100'),
+                  trailing: TextButton(
+                    onPressed: () {
+                      _tapGesture(
+                          context, "Veg burger $index", "something", ' \$100');
+                    },
+                    child: Text('view'),
+                  ),
                 );
               },
               separatorBuilder: (ctx, index) {
@@ -62,7 +75,7 @@ class HomePage extends StatelessWidget {
         MaterialPageRoute(builder: (ctx1) => LoginPage()), (route) => false);
   }
 
-   _showLogoutConfirmationDialog(BuildContext ctx) async {
+  _showLogoutConfirmationDialog(BuildContext ctx) async {
     return showDialog<void>(
       context: ctx,
       builder: (BuildContext context) {
@@ -88,6 +101,32 @@ class HomePage extends StatelessWidget {
         );
       },
     );
-  
-}
+  }
+
+  void _tapGesture(
+      BuildContext context, String title, String content, String price) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(title),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(content),
+                SizedBox(height: 20),
+                Text(price),
+              ],
+            ),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Close")),
+            ],
+          );
+        });
+  }
 }
