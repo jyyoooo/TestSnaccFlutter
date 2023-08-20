@@ -9,7 +9,7 @@ late SharedPreferences sharedpref;
 const saveKeyValue = 'UserLogin';
 
 main() async {
-  runApp(JyoApp());
+  runApp(const JyoApp());
 }
 
 class JyoApp extends StatelessWidget {
@@ -19,11 +19,12 @@ class JyoApp extends StatelessWidget {
   Widget build(BuildContext context) {
    
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Snacc Login',
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: SplashPage(),
+      home: const SplashPage(),
 
       // routes: {
       //   'screen1':(ctx){return ScreenOne();},

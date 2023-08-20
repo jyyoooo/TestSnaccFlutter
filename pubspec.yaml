@@ -31,6 +31,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  glassmorphism: ^3.0.0
   shared_preferences: ^2.2.0
 
 dev_dependencies:
@@ -55,6 +56,8 @@ flutter:
     - assets\images\veg-burger-patty-500x500.png
     - assets\images\pepsi-cold-drink-500x500.png
     - assets\images\hero.png
+    - assets\images\7544482.jpg
+    - assets\images\burger-pixel-art_4x.jpg
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
